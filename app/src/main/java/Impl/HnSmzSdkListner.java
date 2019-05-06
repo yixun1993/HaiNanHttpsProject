@@ -9,4 +9,5 @@ public interface HnSmzSdkListner {
     void getPersonRegister(Bitmap bitmap, GetAddPerson getAddPerson);
     void loadFacesFromDB();
     void cleanAllListner(List<GetAddPerson> getAddPeopleList);
+
 }

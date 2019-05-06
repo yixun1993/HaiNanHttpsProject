@@ -86,7 +86,7 @@ public class HnSmz implements HnSmzImpl {
     public void build() {
         //同步下发
 
-        Flowable.interval(1000, 5 * 60 * 1000, TimeUnit.MILLISECONDS)
+        Flowable.interval(1000, 1 * 60 * 1000, TimeUnit.MILLISECONDS)
                 .onBackpressureDrop()
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Consumer<Long>() {
@@ -100,7 +100,7 @@ public class HnSmz implements HnSmzImpl {
                     }
                 });
 
-        Flowable.interval(1000, 10 * 60 * 1000, TimeUnit.MILLISECONDS)
+        Flowable.interval(1000, 1 * 60 * 1000, TimeUnit.MILLISECONDS)
                 .onBackpressureDrop()
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Consumer<Long>() {
@@ -169,19 +169,20 @@ public class HnSmz implements HnSmzImpl {
                                       DbManger.getInstance().addPerson(addPerson);
                                   }
                                   List<GetAddPerson> getAddPersonList =   DbManger.getInstance().findPeson();
+                                  Log.e("getAddPersonList","getAddPersonList============="+ getAddPersonList.size());
                                   //注册
                                   Register(getAddPersonList);
                                   for ( GetAddPerson getAddPerson : getAddPersonList){
                                       Log.e("getAddPersonFind","getAddPersonFind============="+ getAddPerson.toString());
                                   }
                                   //下发成功
-                                  getFeedBack(2,"56F6-A92A-D7071","人员下发成功");
+                                  getFeedBack(2,mSn,"人员下发成功");
                                   // 添加到数据库
                                   logutil("GetADD","####HnSmz解密后内容为："+ decryptbyte);
                               }
                            } else {
                               //下发失败
-                              getFeedBack(3,"56F6-A92A-D7071","人员下发成功");
+                              getFeedBack(3,mSn,"人员下发成功");
                               Log.e("getAppperson","###HnSmzgetAppperson==="+"下发失败");
                           }
 
@@ -237,11 +238,11 @@ public class HnSmz implements HnSmzImpl {
                                 GetAddPerson addPerson =DbManger.getInstance().queryPersonByID(delPerson.getUser_id());
                                 DbManger.getInstance().deletePerson(addPerson);
                             }
-                            getFeedBack(1,"56F6-A92A-D7071","人员删除成功");
+                            getFeedBack(1,mSn,"人员删除成功");
                         }
                     } else {
                         Log.e("getDel","###HnSmzgetDel删除" +"删除失败");
-                        getFeedBack(0,"56F6-A92A-D7071","人员删除失败");
+                        getFeedBack(0,mSn,"人员删除失败");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -333,6 +334,7 @@ public class HnSmz implements HnSmzImpl {
                    if (mHnSmzSdkListner != null) {
                         String facephoto = getAddPerson.getFace_template();
                         if (!TextUtils.isEmpty(facephoto)) {
+                           // Bitmap bitmap =BitmapFactory.decodeStream(getClass().getResourceAsStream("/res/mipmap-hdpi/ic_launcher.png"));
                             Bitmap bitmap = base64ToBitmap(facephoto);
                             try {
                                 Thread.sleep(500);
