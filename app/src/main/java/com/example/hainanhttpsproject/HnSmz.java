@@ -50,6 +50,7 @@ public class HnSmz implements HnSmzImpl {
     private String mSn;
     private boolean timelock = false;
     private long lastTime;
+    private String mMsg;
     private HnSmz(){
     }
     //这里提供了一个供外部访问本class的静态方法，可以直接访问
@@ -265,13 +266,14 @@ public class HnSmz implements HnSmzImpl {
         feeBackExample.setType(typeId);
         feeBackExample.setSn(sn);
         feeBackExample.setMsg(msg);
+        mMsg = msg;
         HttpMethod.getInstance().config().getFeedBack(feeBackExample.getType(),feeBackExample.getSn(),feeBackExample.getMsg()).enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
                 // 步骤7：处理返回的数据结果
                 String s = response.body().toString();
                 System.out.println("###encrypt=="+response.body());
-                Log.e("mains","####HnSmz回馈成功");
+                Log.e("mains","####HnSmz回馈结果信息"+mMsg);
             }
 
             @Override
