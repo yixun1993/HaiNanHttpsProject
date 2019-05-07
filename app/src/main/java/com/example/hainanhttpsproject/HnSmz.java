@@ -87,7 +87,7 @@ public class HnSmz implements HnSmzImpl {
     public void build() {
         //同步下发
 
-        Flowable.interval(1000, 1 * 60 * 1000, TimeUnit.MILLISECONDS)
+        Flowable.interval(1000, 5 * 60 * 1000, TimeUnit.MILLISECONDS)
                 .onBackpressureDrop()
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Consumer<Long>() {
@@ -101,7 +101,7 @@ public class HnSmz implements HnSmzImpl {
                     }
                 });
 
-        Flowable.interval(1000, 1 * 60 * 1000, TimeUnit.MILLISECONDS)
+        Flowable.interval(1000, 10 * 60 * 1000, TimeUnit.MILLISECONDS)
                 .onBackpressureDrop()
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Consumer<Long>() {
@@ -112,17 +112,17 @@ public class HnSmz implements HnSmzImpl {
                     }
                 });
       //上传识别结果第一步保存考勤数据
-        addUpload();
+//        addUpload();
     }
     //上传识别结果第一步保存考勤数据
-    public  void addUpload(){
+    public  void addUpload(String mSn,String user_id){
         Date nowTime = new Date();
         String dateString = df.format(nowTime);
         Uploadlogs uploadlogs = new Uploadlogs();
         uploadlogs.setRecog_time(dateString);
         uploadlogs.setRecog_type("iris");
         uploadlogs.setSn(mSn);
-        uploadlogs.setUser_id("sdsa123131");
+        uploadlogs.setUser_id(user_id);
         if (uploadlogsTemp == null) {
             uploadlogsTemp = uploadlogs;
         } else {

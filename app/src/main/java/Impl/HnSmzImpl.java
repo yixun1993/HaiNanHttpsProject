@@ -14,7 +14,7 @@ public interface HnSmzImpl {
      HnSmz setSn(String sn);
      HnSmz setHnSmzSdkListner(HnSmzSdkListner hnSmzSdkListner);
      void uploadAttendanceData();
-     void addUpload();
+     void addUpload(String mSn,String user_id);
      void getAddPerson();
      void addErrorPerson(ErrorPerson person);
      void build();
