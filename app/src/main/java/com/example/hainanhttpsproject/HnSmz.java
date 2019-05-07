@@ -163,11 +163,17 @@ public class HnSmz implements HnSmzImpl {
                                   Gson gson1=new Gson();
                                   List<GetAddPerson> list= gson1.fromJson(decryptbyte, new TypeToken<List<GetAddPerson>>() {}.getType());
                                   //每次清除数据
-                                  cleanHoist();
+//                                  cleanHoist();
                                   for(GetAddPerson addPerson :list){
                                       logutil("addPerson","####addPersonHnSmz===："+ addPerson.getName() + "id=="+addPerson.getId()+"iris_template=="+addPerson.getIris_template() );
-                                      //添加数据库
-                                      DbManger.getInstance().addPerson(addPerson);
+                                      GetAddPerson addPerson1 =DbManger.getInstance().queryPersonByID(addPerson.getUser_id());
+                                      if(addPerson1 == null){
+                                          //添加数据库
+                                          DbManger.getInstance().addPerson(addPerson);
+                                      }else{
+                                          DbManger.getInstance().updatePerson(addPerson);
+                                      }
+
                                   }
                                   List<GetAddPerson> getAddPersonList =   DbManger.getInstance().findPeson();
                                   Log.e("getAddPersonList","getAddPersonList============="+ getAddPersonList.size());

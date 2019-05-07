@@ -13,6 +13,7 @@ public interface DbMangerImpl {
     void InitDb(Context context);
     void addPerson(GetAddPerson addPerson);
     void deletePerson(GetAddPerson addPerson);
+    void updatePerson(GetAddPerson addPerson);
     void cleanAllPerson();
     void cleanGetPseronAll();
     void cleanGetPersonListBeanAll();

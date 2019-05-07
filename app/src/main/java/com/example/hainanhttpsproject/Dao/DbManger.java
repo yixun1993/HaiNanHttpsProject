@@ -56,6 +56,11 @@ public class DbManger implements DbMangerImpl {
     }
 
     @Override
+    public void updatePerson(GetAddPerson addPerson) {
+        mDaoWSession.getGetAddPersonDao().update(addPerson);
+    }
+
+    @Override
     public void deletePerson(GetAddPerson addPerson) {//删除
         mDaoWSession.getGetAddPersonDao().delete(addPerson);
     }
