@@ -54,7 +54,8 @@ public class HttpMethod {
                 .build();
         //步骤4:创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://36.101.208.177:7106/Web/Service/DevivePacketWebSvr.assx/") // 设置 网络请求 Url
+//                .baseUrl("http://36.101.208.177:7106/Web/Service/DevivePacketWebSvr.assx/") // 设置 测试地址 Url
+                .baseUrl("http://sys.hizj.net:8106/Service/DevivePacketWebSvr.assx/") // 设置 正式地址 Url
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create()) //设置使用Gson解析(记得加入依赖)
                 .build();
