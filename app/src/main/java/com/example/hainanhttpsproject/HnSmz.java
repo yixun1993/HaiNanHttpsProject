@@ -171,6 +171,7 @@ public class HnSmz implements HnSmzImpl {
                                           //添加数据库
                                           DbManger.getInstance().addPerson(addPerson);
                                       }else{
+                                          addPerson.setPid(addPerson1.getPid());
                                           DbManger.getInstance().updatePerson(addPerson);
                                       }
 
