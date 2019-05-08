@@ -39,7 +39,7 @@ import util.RxScheduler;
 
 public class HnSmz implements HnSmzImpl {
     private static Gson GSON = new GsonBuilder().create();
-    private final String desKey = "48994686"; //  测试
+
     //弱应用
     private WeakReference<Context> contextWeakReference;
     private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -47,6 +47,9 @@ public class HnSmz implements HnSmzImpl {
     private static final HnSmz instance = new HnSmz();
     private HnSmzSdkListner mHnSmzSdkListner;
     private Uploadlogs uploadlogsTemp;
+    // private final String desKey = "48994686"; //  测试
+//    private String desKey = "41145408"; // 正式
+    private String mDesKey ; // 正式
     private String mSn;
     private boolean timelock = false;
     private long lastTime;
@@ -69,6 +72,12 @@ public class HnSmz implements HnSmzImpl {
     @Override
     public HnSmz setSn(String sn) {
         this.mSn = sn;
+        return this;
+    }
+
+    @Override
+    public HnSmz setDesKey(String desKey) {
+        this.mDesKey = desKey;
         return this;
     }
 
@@ -159,7 +168,7 @@ public class HnSmz implements HnSmzImpl {
                           //判断是否下发成功
                           if(obj.getInt("Result") == 0){
                               if(keyContent != null && !("").equals(keyContent)){
-                                  String decryptbyte =   DesUtil.decrypt( keyContent, Charset.forName("utf-8"),desKey);  //将加密后返回的字节行解密
+                                  String decryptbyte =   DesUtil.decrypt( keyContent, Charset.forName("utf-8"),mDesKey);  //将加密后返回的字节行解密
                                   Gson gson1=new Gson();
                                   List<GetAddPerson> list= gson1.fromJson(decryptbyte, new TypeToken<List<GetAddPerson>>() {}.getType());
                                   //每次清除数据
@@ -237,7 +246,7 @@ public class HnSmz implements HnSmzImpl {
                     Log.e("Getrequest","###keyContent=="+keyDeleteContent);
                     if(obj.getInt("Result") == 0){
                         if (keyDeleteContent != null && !keyDeleteContent.equals("")){
-                            String     deleByte =   DesUtil.decrypt( keyDeleteContent, Charset.forName("utf-8"),desKey);  //将加密后返回的字节行解密
+                            String     deleByte =   DesUtil.decrypt( keyDeleteContent, Charset.forName("utf-8"),mDesKey);  //将加密后返回的字节行解密
                             Gson gson1=new Gson();
                             List<DelPerson> list= gson1.fromJson(deleByte, new TypeToken<List<DelPerson>>() {}.getType());
                             for(DelPerson delPerson :list){
@@ -301,7 +310,7 @@ public class HnSmz implements HnSmzImpl {
             uploadAttendance.setLogs(uploadlogsDataList);
             String datajson = GSON.toJson(uploadAttendance);
             Log.e("datajson","###datajson==="+datajson);
-            String  encrypt =  DesUtil.encrypt(datajson, Charset.forName("utf-8"),desKey);  //进行加密
+            String  encrypt =  DesUtil.encrypt(datajson, Charset.forName("utf-8"),mDesKey);  //进行加密
             Log.e("encrypt","####encryptUpload==="+encrypt);
             HttpMethod.getInstance().config().getUpload(mSn,encrypt).enqueue(new Callback<Object>() {
                 @Override
