@@ -87,7 +87,7 @@ public class HnSmz implements HnSmzImpl {
     public void build() {
         //同步下发
 
-        Flowable.interval(1000, 5 * 60 * 1000, TimeUnit.MILLISECONDS)
+        Flowable.interval(1000, 60 * 1000, TimeUnit.MILLISECONDS)
                 .onBackpressureDrop()
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Consumer<Long>() {
@@ -101,7 +101,7 @@ public class HnSmz implements HnSmzImpl {
                     }
                 });
 
-        Flowable.interval(1000, 10 * 60 * 1000, TimeUnit.MILLISECONDS)
+        Flowable.interval(1000,  60 * 1000, TimeUnit.MILLISECONDS)
                 .onBackpressureDrop()
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Consumer<Long>() {
