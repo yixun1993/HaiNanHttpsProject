@@ -222,11 +222,18 @@ public class HnSmz implements HnSmzImpl {
           });
     }
 
+    private  void delFaceByUserId(String id){
+        if(mHnSmzSdkListner != null ){
+            //删除百度人脸库离职
+            mHnSmzSdkListner.delFaceDataByUserId(id);
+        }
+    }
     private  void cleanHoist(){
         //删除历史数据
-        DbManger.getInstance().cleanGetPseronAll();
-        DbManger.getInstance().cleanGetPersonListBeanAll();
+//        DbManger.getInstance().cleanGetPseronAll();
+//        DbManger.getInstance().cleanGetPersonListBeanAll();
         //删除全部百度库人脸数据
+
         List<GetAddPerson> listFind = DbManger.getInstance().findPeson();
         if (listFind != null && listFind.size() != 0) {
             mHnSmzSdkListner.cleanAllListner(listFind);
@@ -253,8 +260,10 @@ public class HnSmz implements HnSmzImpl {
                                 logutil("delPerson","####delPerson===："+ delPerson.getUser_id());
                                 //查询数据库对应数据
                                 GetAddPerson addPerson =DbManger.getInstance().queryPersonByID(delPerson.getUser_id());
+                                delFaceByUserId(delPerson.getUser_id());
                                 DbManger.getInstance().deletePerson(addPerson);
                             }
+
                             getFeedBack(1,mSn,"人员删除成功");
                         }
                     } else {
