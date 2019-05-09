@@ -262,6 +262,13 @@ public class HnSmz implements HnSmzImpl {
                                 GetAddPerson addPerson =DbManger.getInstance().queryPersonByID(delPerson.getUser_id());
                                 delFaceByUserId(delPerson.getUser_id());
                                 DbManger.getInstance().deletePerson(addPerson);
+                                //根据离职userId查询注册失败库中对应数据
+                                ErrorPerson errorPerson = DbManger.getInstance().delErrorByUserId(delPerson.getUser_id());
+                                if(errorPerson != null){
+                                    //根据离职userId删除失败库中对应数据
+                                     DbManger.getInstance().addErrorPserson(errorPerson);
+                                }
+
                             }
 
                             getFeedBack(1,mSn,"人员删除成功");

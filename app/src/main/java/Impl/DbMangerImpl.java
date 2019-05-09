@@ -27,6 +27,6 @@ public interface DbMangerImpl {
     //注册失败保存失败人员数据库
     void addErrorPserson(ErrorPerson errorPerson);
     //根据user_id查询注册失败数据
-//    ErrorPerson queryByUserId(String userId);
+    ErrorPerson delErrorByUserId(String userId);
 
 }

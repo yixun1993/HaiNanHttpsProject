@@ -66,6 +66,11 @@ public class DbManger implements DbMangerImpl {
     }
 
     @Override
+    public ErrorPerson delErrorByUserId(String userId) {
+        return mDaoRSession.getErrorPersonDao().queryBuilder().where(ErrorPersonDao.Properties.User_id.eq(userId)).unique();
+    }
+
+    @Override
     public GetAddPerson queryPersonByID(String id) {
         return mDaoRSession.getGetAddPersonDao().queryBuilder().where(GetAddPersonDao.Properties.User_id.eq(id)).unique();
     }
