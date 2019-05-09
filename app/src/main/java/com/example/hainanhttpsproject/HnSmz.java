@@ -229,9 +229,6 @@ public class HnSmz implements HnSmzImpl {
         }
     }
     private  void cleanHoist(){
-        //删除历史数据
-//        DbManger.getInstance().cleanGetPseronAll();
-//        DbManger.getInstance().cleanGetPersonListBeanAll();
         //删除全部百度库人脸数据
 
         List<GetAddPerson> listFind = DbManger.getInstance().findPeson();
