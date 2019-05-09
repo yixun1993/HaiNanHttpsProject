@@ -54,6 +54,11 @@ public class GetRequest extends AppCompatActivity {
                   //删除百度人脸库
 
             }
+
+            @Override
+            public void delFaceDataByUserId(String id) {
+
+            }
         }).build();
 
 
