@@ -188,7 +188,7 @@ public class HnSmz implements HnSmzImpl {
                                   List<GetAddPerson> getAddPersonList =   DbManger.getInstance().findPeson();
                                   Log.e("getAddPersonList","getAddPersonList============="+ getAddPersonList.size());
                                   //注册
-                                  Register(getAddPersonList);
+                                  Register(list);
                                   for ( GetAddPerson getAddPerson : getAddPersonList){
                                       Log.e("getAddPersonFind","getAddPersonFind============="+ getAddPerson.toString());
                                   }
