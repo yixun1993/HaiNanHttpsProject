@@ -28,5 +28,7 @@ public interface DbMangerImpl {
     void addErrorPserson(ErrorPerson errorPerson);
     //根据user_id查询注册失败数据
     ErrorPerson delErrorByUserId(String userId);
+    //刪除
+    void deleteErrorPserson(ErrorPerson errorPerson);
 
 }

@@ -265,8 +265,8 @@ public class HnSmz implements HnSmzImpl {
                                 //根据离职userId查询注册失败库中对应数据
                                 ErrorPerson errorPerson = DbManger.getInstance().delErrorByUserId(delPerson.getUser_id());
                                 if(errorPerson != null){
-                                    //根据离职userId删除失败库中对应数据
-                                     DbManger.getInstance().addErrorPserson(errorPerson);
+                                    //根据离职删除失败库中对应数据
+                                     DbManger.getInstance().deleteErrorPserson(errorPerson);
                                 }
 
                             }
