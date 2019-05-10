@@ -96,7 +96,7 @@ public class HnSmz implements HnSmzImpl {
     public void build() {
         //同步下发
 
-        Flowable.interval(1000, 60 * 1000, TimeUnit.MILLISECONDS)
+        Flowable.interval(1000, 5 * 60 * 1000, TimeUnit.MILLISECONDS)
                 .onBackpressureDrop()
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Consumer<Long>() {
@@ -110,7 +110,7 @@ public class HnSmz implements HnSmzImpl {
                     }
                 });
 
-        Flowable.interval(1000,  60 * 1000, TimeUnit.MILLISECONDS)
+        Flowable.interval(1000,  10 * 60 * 1000, TimeUnit.MILLISECONDS)
                 .onBackpressureDrop()
                 .observeOn(Schedulers.newThread())
                 .subscribe(new Consumer<Long>() {
@@ -374,9 +374,13 @@ public class HnSmz implements HnSmzImpl {
                             }
                             if (bitmap != null) {
                                 Log.e("mHnSmzSdkListner","mHnSmzSdkListner===="+mHnSmzSdkListner);
-                                mHnSmzSdkListner.getPersonRegister(bitmap, getAddPerson);
-                                //注册成功后加载百度数据库
-                                mHnSmzSdkListner.loadFacesFromDB();
+                             boolean result =   mHnSmzSdkListner.getPersonRegister(bitmap, getAddPerson);
+
+                                if (result) {
+                                    //注册成功后加载百度数据库
+                                    mHnSmzSdkListner.loadFacesFromDB();
+                                }
+//
                             }
 
                             Log.e("Register","Register注册成功="+facephoto);
@@ -385,9 +389,9 @@ public class HnSmz implements HnSmzImpl {
                         }
                     }
                 }
-                if (mHnSmzSdkListner != null) {//重新加载百度数据库
-                    mHnSmzSdkListner.loadFacesFromDB();
-                }
+//                if (mHnSmzSdkListner != null) {//重新加载百度数据库
+//                    mHnSmzSdkListner.loadFacesFromDB();
+//                }
             }
         });
     }

@@ -40,8 +40,10 @@ public class GetRequest extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         HnSmz.getInstance().InitSMZ(this).setSn("56F6-A92A-D7071").setHnSmzSdkListner(new HnSmzSdkListner() {
             @Override
-            public void getPersonRegister(Bitmap bitmap, GetAddPerson getAddPerson) {
+            public boolean getPersonRegister(Bitmap bitmap, GetAddPerson getAddPerson) {
                 //百度人脸注册
+                boolean mResulte = false;
+                return  mResulte;
             }
 
             @Override
