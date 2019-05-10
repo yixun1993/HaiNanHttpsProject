@@ -242,7 +242,6 @@ public class HnSmz implements HnSmzImpl {
             public void onResponse(Call<Object> call, Response<Object> response) {
                 // 步骤7：处理返回的数据结果
                 response.body().toString();
-                Log.e("mains","####HnSmz删除成功");
                 try {
                     JSONObject obj = new JSONObject(response.body().toString());
                     Log.e("mains","####HnSmzobj=="+obj);
@@ -270,6 +269,7 @@ public class HnSmz implements HnSmzImpl {
 
                             getFeedBack(1,mSn,"人员删除成功");
                         }
+                        Log.e("getDel","####HnSmz删除成功");
                     } else {
                         Log.e("getDel","###HnSmzgetDel删除" +"删除失败");
                         getFeedBack(0,mSn,"人员删除失败");
