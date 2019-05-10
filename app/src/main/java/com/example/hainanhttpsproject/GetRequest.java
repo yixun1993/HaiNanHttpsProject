@@ -44,10 +44,7 @@ public class GetRequest extends AppCompatActivity {
 
             }
 
-            @Override
-            public void loadFacesFromDB() {
-                 //加载百度人脸库
-            }
+
 
             @Override
             public void cleanAllListner(List<GetAddPerson> getAddPeopleList) {
