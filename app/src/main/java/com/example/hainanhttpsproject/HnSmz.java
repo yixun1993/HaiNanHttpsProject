@@ -374,10 +374,11 @@ public class HnSmz implements HnSmzImpl {
                             }
                             if (bitmap != null) {
                                 Log.e("mHnSmzSdkListner","mHnSmzSdkListner===="+mHnSmzSdkListner);
-                                mHnSmzSdkListner.getPersonRegister(bitmap, getAddPerson);
-//                                if (result) {
-//                                    DbManger.getInstance().addEmployeeList(employeeListBean);
-//                                }
+                              boolean result =   mHnSmzSdkListner.getPersonRegister(bitmap, getAddPerson);
+                                if (result) {
+                                    //注册成功加载百度数据库
+                                    mHnSmzSdkListner.loadFacesFromDB();
+                                }
                             }
                             Log.e("Register","Register注册成功="+facephoto);
                         } else {
