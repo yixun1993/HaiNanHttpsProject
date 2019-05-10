@@ -361,7 +361,7 @@ public class HnSmz implements HnSmzImpl {
             @Override
             public void doOnIOThread() {
                 for (GetAddPerson getAddPerson : listGetAddPersonList) {
-                    Log.d("Register","##服务器下载成功 用户id =" + getAddPerson.getUser_id() + " 用户姓名=" + getAddPerson.getName());
+                    Log.d("Register","##用户id =" + getAddPerson.getUser_id() + " 用户姓名=" + getAddPerson.getName());
                    if (mHnSmzSdkListner != null) {
                         String facephoto = getAddPerson.getFace_template();
                         if (!TextUtils.isEmpty(facephoto)) {
